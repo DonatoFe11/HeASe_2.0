@@ -1,0 +1,7 @@
+/test/data/*
+/test/stored_data/*
+/test/__pycache__/*
+/sustainameal/__pychache__/*
+/build/*
+/dist/*
+/SustainaMeal.egg-info/*

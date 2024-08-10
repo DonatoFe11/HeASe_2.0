@@ -1,0 +1,2 @@
+[console_scripts]
+sustainameal = sustainameal.cli:main
