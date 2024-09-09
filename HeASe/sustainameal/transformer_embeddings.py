@@ -33,6 +33,8 @@ class RecipeTransformer:
             batch = self.tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors="pt")
             batch = {k: v.to(self.device) for k, v in batch.items()}
             with torch.no_grad():
+                # Assicurati che il modello sia sullo stesso dispositivo
+                self.model.to(self.device)
                 outputs = self.model(**batch)
             # Estrai l'embedding e aggiungilo alla lista
             embeddings.append(outputs.last_hidden_state[:, 0, :].cpu().numpy())

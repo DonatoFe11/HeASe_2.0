@@ -46,10 +46,9 @@ class Agent:
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id,
             quantization_config=nf4_config,
-            device_map={"": "cuda:0"},
+            device_map="auto",
         )
 
-        self.model = self.model.to("cuda:0")
         self.memory_size = memory_size
         self.temperature = temperature
 
