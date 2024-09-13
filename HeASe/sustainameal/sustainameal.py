@@ -260,8 +260,10 @@ class SustainaMeal:
             user_content = custom_prompt
         else:
             user_content = "Using your knowledge please rank (if necessary) the following recipes from most to least recommended based on a balance of sustainability and healthiness:\n"
-            user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
-            user_content += "\n\nWhich one should I choose? Return just the name."
+        
+        user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
+        user_content += "\n\nWhich one should I choose? Return just the name."
+        
         prompt = [
             {"role": "system", "content": "You are an AI assistant that helps users make informed choices about healthy and sustainable diets."},
             {"role": "user", "content": user_content},
@@ -285,7 +287,7 @@ class SustainaMeal:
             user_content = custom_prompt
         else:
             user_content = "Choose the most healthy and sustainable recipe from the list below and explain why it is the best in a user friendly paragraph, without comparing it to the others."
-            user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
+        user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
 
         prompt = [
             {"role": "system", "content": "You are an AI assistant that helps users make informed choices about healthy and sustainable diets."},
