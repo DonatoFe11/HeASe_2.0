@@ -261,7 +261,7 @@ class SustainaMeal:
         else:
             user_content = "Using your knowledge please rank (if necessary) the following recipes from most to least recommended based on a balance of sustainability and healthiness:\n"
             user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
-
+            user_content += "\n\nWhich one should I choose? Return just the name."
         prompt = [
             {"role": "system", "content": "You are an AI assistant that helps users make informed choices about healthy and sustainable diets."},
             {"role": "user", "content": user_content},
