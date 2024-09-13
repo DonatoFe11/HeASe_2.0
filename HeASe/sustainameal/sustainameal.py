@@ -259,6 +259,31 @@ class SustainaMeal:
         if custom_prompt is not None:
             user_content = custom_prompt
         else:
+            user_content = "Using your knowledge please rank (if necessary) the following recipes from most to least recommended based on a balance of sustainability and healthiness:\n"
+            user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
+
+        prompt = [
+            {"role": "system", "content": "You are an AI assistant that helps users make informed choices about healthy and sustainable diets."},
+            {"role": "user", "content": user_content},
+        ]
+
+        # Usa l'agente per generare la risposta
+        agent_response = self.agent.ask(prompt)
+        return agent_response
+    
+    def choose_and_explain_best_recipe_with_llama(self, custom_prompt=None, nearest_recipes=None, alpha=0.7, beta=0.3):
+        """
+        Usa LLaMA per scegliere e spiegare la scelta della migliore ricetta da una lista ordinata per sostenibilità e salute.
+        """
+        ordered_recipes = self.order_recipe_by_sustainameal(nearest_recipes, alpha, beta)
+
+        if ordered_recipes.empty:
+            print("No recipes to order. Please provide a non-empty DataFrame.")
+            return None
+
+        if custom_prompt is not None:
+            user_content = custom_prompt
+        else:
             user_content = "Choose the most healthy and sustainable recipe from the list below and explain why it is the best in a user friendly paragraph, without comparing it to the others."
             user_content += "\n".join([f"Recipe: {row['title']}" for _, row in ordered_recipes.iterrows()])
 

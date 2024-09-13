@@ -1,5 +1,5 @@
 import argparse
-from sustainameal import SustainaMeal
+from HeASe.sustainameal import SustainaMeal
 import pandas as pd
 
 

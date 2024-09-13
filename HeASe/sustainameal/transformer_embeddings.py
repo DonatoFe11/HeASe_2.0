@@ -42,4 +42,3 @@ class RecipeTransformer:
         # Unisci tutti gli embeddings in un'unica matrice NumPy
         return np.vstack(embeddings)
 
-
